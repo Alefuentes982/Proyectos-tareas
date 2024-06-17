@@ -1,0 +1,21 @@
+<h1>Editar Proyecto</h1>
+<%= form_with(model: @project, local: true) do |form| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> no se permite guardar este proyecto:</h2>
+      <ul>
+        <% @project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Actualizar Proyecto" %>
+  </div>
+<% end %>
+<%= link_to 'Volver', projects_path %>
