@@ -1,0 +1,14 @@
+<h1><%= @project.title %></h1>
+<%= link_to 'Editar', edit_project_path(@project) %>
+<%= link_to 'Volver', projects_path %>
+<h2>Tareas</h2>
+<%= link_to 'Nueva Tarea', new_project_task_path(@project) %>
+<ul>
+  <% @project.tasks.each do |task| %>
+    <li>
+      <%= task.title %> - <%= task.completed ? 'Completado' : 'Pendiente' %>
+      <%= link_to 'Editar', edit_project_task_path(@project, task) %>
+      <%= link_to 'Eliminar', project_task_path(@project, task), method: :delete, data: { confirm: 'Esta seguro que quiere eliminar la tarea?' } %>
+    </li>
+  <% end %>
+</ul>
