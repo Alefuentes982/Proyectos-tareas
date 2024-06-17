@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Proyectos</title>
+    <title>ProjectManager</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/@rails/ujs@6.1.4/lib/assets/compiled/rails-ujs.js" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
+    <header>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 1em; background-color: #f8f9fa;">
+        <div>
+          <% if user_signed_in? %>
+            <span>Welcome, <%= current_user.email %></span>
+          <% end %>
+        </div>
+        <div>
+          <% if user_signed_in? %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, style: 'margin-left: 1em;' %>
+          <% else %>
+            <%= link_to 'Login', new_user_session_path, style: 'margin-right: 1em;' %>
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          <% end %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
